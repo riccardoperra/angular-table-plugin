@@ -1,0 +1,35 @@
+<ng-container *ngIf="loadingPlugin?.loading$ | async; else tableTpl">
+  Loading...
+</ng-container>
+
+<ng-template #tableTpl>
+  <table>
+    <thead>
+      <tr>
+        <th *ngIf="selectionPlugin">
+          <input
+            type="checkbox"
+            [ngModel]="selectionPlugin.allSelected"
+            (ngModelChange)="selectionPlugin.toggleAll()"
+          />
+        </th>
+        <th>Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of items">
+        <td *ngIf="selectionPlugin">
+          <input
+            type="checkbox"
+            [ngModel]="selectionPlugin.isSelected(user.id)"
+            (ngModelChange)="selectionPlugin.toggle(user.id)"
+          />
+        </td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

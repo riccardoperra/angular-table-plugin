@@ -1,0 +1,28 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happen :)</p>
+
+<button (click)="showTable = !showTable">
+  {{ showTable ? 'Hide' : 'Show' }}
+</button>
+
+<hr />
+
+<div>Selected: {{ selected }}</div>
+
+<hr />
+
+<div>Loading: {{ loading$ | async }}</div>
+
+<hr />
+
+<app-user-table
+  *ngIf="showTable"
+  tableSelection
+  [selectionHandler]="'id'"
+  [selectedItems]="selected"
+  [selectionResetOnChange]="true"
+  (selectionChange)="onSelectionChange($event)"
+  [tableLoading]="loading$ | async"
+  (loadingChange)="onLoadingChange($event)"
+  [items]="users$ | async"
+></app-user-table>

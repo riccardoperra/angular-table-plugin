@@ -1,0 +1,10 @@
+/* Add application styles & imports to this file! */
+
+table thead th {
+  text-align: left;
+}
+
+table th,
+table td {
+  border: 1px solid #ccc;
+}
